@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/ico" href="calculadora.ico" />
+    <title>Supercalculadora</title>
+    <link rel="stylesheet" href="/css/estilos.css">
+    <link rel="stylesheet" href="/css/cuaderno.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@200;500;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <nav>
+        <div class="box">
+            <span class="titulo"><a href="/"><img src="/img/calculadora.png" width="40em">SUPERCALCULADORA</a></span>
+            <span></span>
+            <div>
+                <span style="float: right;margin-right: 10px;padding: 2px;" class="titulo"><a href="/about"><img
+                            src="/img/information.png" width="40em" alt="ACERCA DE"></a></span>
+            </div>
+        </div>
+    </nav>
+    <div id="escritorio">
+        <div id="calculadora">
+            <div id="pantalla">
+                <div id="adentro">
+                    <textarea name="display" id="display" disabled
+                        placeholder="CASIO">Ingresa el primer número...</textarea>
+                    <span style="z-index: 4;display: none;color: red;margin-left: 20px;" id="informacion"></span>
+                    <span id="resultado"><span style="font-size: 2em; color: skyblue;" id="primero"
+                            class="blink">_</span> <span style="font-size: 2em;" id="operacion">_</span> <span
+                            style="font-size: 2em; color: skyblue;" id="segundo">_</span> <span style="font-size: 2em;"
+                            id="respuesta">= ?</span> </span>
+                </div>
+            </div>
+            <div id="teclas">
+                <div class="tecla">
+                    <button onclick="imprimir(this,false)">
+                        NUMERO1
+                    </button>
+                </div>
+                <div class="tecla">
+                    <button onclick="imprimir(this,false)">
+                        OPERADOR
+                    </button>
+                </div>
+                <div class="tecla">
+                    <button onclick="imprimir(this,false)">
+                        NUMERO2
+                    </button>
+                </div>
+                <div class="tecla">
+                    <button onclick="imprimir(this,false)">
+                        ^
+                    </button>
+                </div>
+                <div class="tecla">
+                    <button onclick="imprimir(this,false)">
+                        +
+                    </button>
+                </div>
+                <div class="tecla">
+                    <button onclick="imprimir(this,false)">
+                        /
+                    </button>
+                </div>
+                <div class="tecla">
+                    <button onclick="imprimir(this,false)">
+                        *
+                    </button>
+                </div>
+                <div class="tecla">
+                    <button onclick="imprimir(this,false)">
+                        -
+                    </button>
+                </div>
+                <div class="tecla">
+                    <button onclick="imprimir(this,false)">
+                        7
+                    </button>
+                </div>
+                <div class="tecla">
+                    <button onclick="imprimir(this,false)">
+                        8
+                    </button>
+                </div>
+                <div class="tecla">
+                    <button onclick="imprimir(this,false)">
+                        9
+                    </button>
+                </div>
+                <div class="tecla">
+                    <button onclick="imprimir(this,false)" class="del">
+                        NUEVA
+                    </button>
+                </div>
+                <div class="tecla">
+                    <button onclick="imprimir(this,false)">
+                        4
+                    </button>
+                </div>
+                <div class="tecla">
+                    <button onclick="imprimir(this,false)">
+                        5
+                    </button>
+                </div>
+                <div class="tecla">
+                    <button onclick="imprimir(this,false)">
+                        6
+                    </button>
+                </div>
+                <div class="tecla">
+                    <button onclick="imprimir(this,false)">
+                        1
+                    </button>
+                </div>
+                <div class="tecla">
+                    <button onclick="imprimir(this,false)">
+                        2
+                    </button>
+                </div>
+                <div class="tecla">
+                    <button onclick="imprimir(this,false)">
+                        3
+                    </button>
+                </div>
+                <div class="tecla">
+                    <button onclick="imprimir(this,false)">
+                        0
+                    </button>
+                </div>
+                <div class="tecla">
+                    <button onclick="imprimir(this,false)">
+                        .
+                    </button>
+                </div>
+                <div class="tecla">
+                    <button onclick="imprimir(this,false)" class="del">
+                        <- </button>
+                </div>
+                <div class="tecla igual2">
+                    <button onclick="imprimir(this,true)" class="igual">
+                        =
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="paper">
+            <div id="pattern">
+                <div id="content">
+                    <center>
+                        <span class="obtener"><img src="/img/clock.png" alt="historial" width="18em">OBTENER
+                            HISTORIAL</span>
+                    </center>
+                    <table class="historial" id="tabla">
+                        <thead>
+                            <tr>
+                                <th>ENTRADA</th>
+                                <th>RESULTADO</th>
+                                <th>MARCAR</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="operacion">3*5+2</td>
+                                <td class="resultado">17</td>
+                                <td><button onclick="resaltar(this)"><img src="/img/highlighter.png" alt="resaltar"
+                                            width="15em"></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script>
+        var posicion = 0;
+        var numero1;
+        var numero2;
+        var operacion = "";
+        function imprimir(boton, esIgual) {
+            var tiempo = 4000;
+            if (!esIgual) {
+                var texto = boton.textContent.trim();
+                var numero = parseFloat(texto);
+                if (texto >= -10000 || texto == '.') {
+                    console.log(texto);
+                    if (posicion == 0) {
+                        numero1 = numero;
+                        if (document.getElementById("primero").textContent == '_') {
+                            if (texto == '.') {
+                                $("#informacion").text("No puedes iniciar el numero con un punto");
+                                $("#informacion").fadeIn();
+                                $("#informacion").fadeOut(tiempo);
+                            } else
+                                document.getElementById("primero").textContent = texto;
+                        } else {
+                            document.getElementById("primero").textContent += texto;
+                        }
+                    } else if (posicion == 2) {
+                        numero2 = numero;
+                        if (document.getElementById("segundo").textContent == '_') {
+                            if (texto == '.') {
+                                $("#informacion").text("No puedes iniciar el numero con un punto");
+                                $("#informacion").fadeIn();
+                                $("#informacion").fadeOut(tiempo);
+                            } else
+                                document.getElementById("segundo").textContent = texto;
+                        } else {
+                            document.getElementById("segundo").textContent += texto;
+                        }
+                    } else {
+                        $("#informacion").text("No puedes colocar un numero como operador");
+                        $("#informacion").fadeIn();
+                        $("#informacion").fadeOut(tiempo);
+                    }
+                } else if (texto == 'NUMERO1') {
+                    document.getElementById("display").textContent = "Ingresando el numero 1...";
+                    document.getElementById
+                    remover();
+                    posicion = 0;
+                    document.getElementById("primero").classList.add("blink");
+                } else if (texto == 'NUMERO2') {
+                    document.getElementById("display").textContent = "Ingresando el numero 2...";
+                    remover();
+                    posicion = 2;
+                    document.getElementById("segundo").classList.add("blink");
+                } else if (texto == 'OPERADOR') {
+                    document.getElementById("display").textContent = "Ingresando el operador...";
+                    remover();
+                    posicion = 1;
+                    document.getElementById("operacion").classList.add("blink");
+                } else if (texto == 'NUEVA') {
+                    document.getElementById("display").textContent = "Ingresando el numero 1...";
+                    remover();
+                    document.getElementById("primero").classList.add("blink");
+                    document.getElementById("primero").textContent = '_';
+                    document.getElementById("segundo").textContent = '_';
+                    document.getElementById("operacion").textContent = '_';
+                } else if (texto == '<-') {
+                    var elemento1;
+                    if (posicion == 0) {
+                        elemento1 = document.getElementById("primero");
+                    } else if (posicion == 1) {
+                        elemento1 = document.getElementById("operacion");
+                    } else {
+                        elemento1 = document.getElementById("segundo");
+                    }
+                    if (elemento1.textContent == '_') {
+                        $("#informacion").text("Nada que eliminar");
+                        $("#informacion").fadeIn();
+                        $("#informacion").fadeOut(tiempo);
+                    } else if (elemento1.textContent.length > 1) {
+                        elemento1.textContent = elemento1.textContent.substring(0, elemento1.textContent.length - 1);
+                    } else {
+                        elemento1.textContent = "_";
+                    }
+                } else {
+                    if (posicion == 1) {
+                        document.getElementById("operacion").textContent = texto;
+                    } else {
+                        $("#informacion").text("No puedes colocar un operador como numero");
+                        $("#informacion").fadeIn();
+                        $("#informacion").fadeOut(tiempo);
+                    }
+                }
+            } else {
+                var hi = document.getElementById("tabla");
+                var tex = document.getElementById("primero").textContent;
+                var tex2 = document.getElementById("segundo").textContent;
+                var tex3 = document.getElementById("operacion").textContent;
+
+                if (tex != '_' && tex2 != '_' && tex3 != '_') {
+                    if (numero2 == 0 && operacion == '/') {
+                        $("#informacion").text("División entre cero no aceptada");
+                        $("#informacion").fadeIn();
+                        $("#informacion").fadeOut(tiempo);
+                    } else {
+                        $.ajax({
+                            type: 'POST',
+                            dataType: "json",
+                            url: 'http://localhost/api/operar',
+                            data: { numero1: tex, numero2: tex2, operador: tex3 },
+                            beforeSend: function () {
+                                $("#informacion").text("Enviando...");
+                                $("#informacion").fadeIn(tiempo);
+                            },
+                            complete: function (data) {
+                                //$("#informacion").text(data.resultado);
+                            },
+                            success: function (data) {
+                                var res = data.resultado;
+                                console.log(data);
+                                if (typeof (res) == String) {
+                                    $("#informacion").text(res);
+                                } else {
+                                    $("#informacion").text("Operacion realizada con exito, exitosamente");
+                                    $("#respuesta").text(" = " + res);
+                                }
+                            },
+                            error: function (data) {
+                                $("#informacion").text(data.resultado);
+                            }
+                        });
+                    }
+                } else {
+                    $("#informacion").text("Aún te faltan datos por llenar");
+                    $("#informacion").fadeIn();
+                    $("#informacion").fadeOut(tiempo);
+                }
+            }
+        }
+        function resaltar(boton) {
+            var tdActual = boton.parentNode;
+            var trActual = tdActual.parentNode;
+            var tbodyActual = trActual.parentNode;
+            var trs = tbodyActual.querySelectorAll("tr");
+            for (let i = 0; i < trs.length; i++) {
+                trs[i].style.backgroundColor = "";
+            }
+            trActual.style.backgroundColor = "yellow";
+        }
+
+        function borrar() {
+            var d = document.getElementById("display").textContent;
+            var nd = d.substring(0, d.length - 1);
+            document.getElementById("display").textContent = nd;
+        }
+
+        function remover() {
+            if (document.getElementById("primero").classList != null) {
+                document.getElementById("primero").classList.remove("blink");
+            }
+            if (document.getElementById("segundo").classList != null) {
+                document.getElementById("segundo").classList.remove("blink");
+            }
+            if (document.getElementById("operacion").classList != null) {
+                document.getElementById("operacion").classList.remove("blink");
+            }
+        }
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</body>
+</html>

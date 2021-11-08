@@ -1,0 +1,278 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+nav {
+    background-color: #6d4f2d;
+    height: 3em;
+}
+
+.box {
+    display: grid;
+    /* align-items: center; */
+    padding-top: 0.2em;
+    grid-template-columns: 40% 30% 30%;
+    justify-content: center;
+}
+
+#historial {
+    width: 80%;
+    height: 100%;
+    background-color: white;
+}
+
+.titulo {
+    font-size: 2em;
+    font-weight: 700;
+    color: #89c763;
+    width: fit-content;
+}
+
+.titulo img {
+    vertical-align: middle;
+}
+
+a {
+    text-decoration: none;
+    color: #89c763;
+}
+
+.titulo:hover {
+    background-color: teal;
+    border-radius: 0.6em;
+}
+
+body {
+    background-image: url(https://cdnb.artstation.com/p/assets/images/images/004/682/457/large/simon-sanchez-madera-tilex1.jpg?1485480359&dl=1);
+    /*background-repeat: round;*/
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+}
+
+#pantalla {
+    margin: 1.5em;
+    background-color: black;
+    border-radius: 1em 1em 0 0;
+    border: 0.5em solid #383838;
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+}
+
+#escritorio {
+    margin: auto;
+    margin-top: 3em;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    align-items: center;
+}
+
+#resultado {
+    color: yellow;
+    float: right;
+    padding: 0.5em;
+    font-size: 2em;
+}
+
+#adentro {
+    background-color: #000;
+    border-radius: 1em 1em 0 0;
+}
+
+#calculadora {
+    display: grid;
+    grid-template-columns: 100%;
+    background-color: gray;
+    width: 70%;
+    margin: auto;
+    border-radius: 1em 1em 0 0;
+    padding-bottom: 1em;
+    background: linear-gradient( -180deg, #c39a73 95%, rgb(51, 51, 51) 95%);
+}
+
+textarea {
+    display: block;
+    width: 100%;
+    background: black;
+    color: yellow;
+    /* margin: 1%; */
+    border-radius: 1em 1em 0 0;
+    padding: 1em 1em 0 1em;
+    resize: none;
+    border: none;
+    font-size: 1.2em;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+}
+
+#shadow-input {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 0;
+    color: rgba(87, 184, 70, .5);
+}
+
+#teclas {
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    align-items: flex-end;
+    margin: 0 1.5em 1.5em 1.5em;
+    grid-gap: 0.1em;
+}
+
+.tecla {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: flex-end;
+}
+
+.tecla button {
+    width: 100%;
+    height: 100%;
+    background: rgb(0, 212, 255);
+    background: linear-gradient( -180deg, #a2c78b 68%, white 68%, white 74%, rgb(48 37 33) 74%);
+    padding: 0.5em 0.5em 1em 0.5em;
+    border-radius: 0.5em 0.5em 0 0;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    font-size: 1.3em;
+    font-weight: 700;
+    border-color: white;
+    border: 0.2em solid white;
+    border-bottom: none;
+}
+
+.tecla button:hover {
+    cursor: pointer;
+    animation-name: posicionamiento;
+    animation-duration: 0.1s;
+    height: 75%;
+    background: rgba(0, 212, 255, 1);
+}
+
+.igual2 {
+    grid-row-start: 4;
+    grid-row-end: 7;
+    grid-column-start: 4;
+}
+
+.igual {
+    height: 100%;
+    background: linear-gradient( -180deg, green 91%, white 91%, white 92%, rgb(48 37 33) 92%) !important;
+}
+
+.igual:hover {
+    cursor: pointer;
+    animation-name: posicionamiento;
+    animation-duration: 0.1s;
+    height: 92% !important;
+    background: green !important;
+}
+
+.del {
+    height: 100%;
+    background: red !important;
+    background: linear-gradient(-180deg, red 68%, white 68%, white 74%, rgb(48 37 33) 74%) !important;
+}
+
+.del:hover {
+    cursor: pointer;
+    animation-name: posicionamiento2;
+    animation-duration: 0.1s;
+    height: 75%;
+    background: red !important;
+}
+
+.historial {
+    width: 100%;
+}
+
+.historial tbody tr td {
+    text-align: center;
+}
+
+td button {
+    border: none;
+    background-color: yellow;
+}
+
+td button:hover {
+    cursor: pointer;
+    background-color: white;
+}
+
+@keyframes posicionamiento {
+    from {
+        height: 100%;
+    }
+    to {
+        height: 80%;
+    }
+}
+
+@keyframes posicionamiento2 {
+    from {
+        height: 100%;
+    }
+    to {
+        height: 92%;
+    }
+}
+
+.obtener {
+    border: 1px dotted gray;
+    border-radius: 2rem;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.obtener img {
+    vertical-align: middle;
+}
+
+.obtener:hover {
+    background-color: rgb(73, 131, 73);
+    color: white;
+    border: 3px solid rgb(255, 255, 0);
+    cursor: pointer;
+}
+
+.blink {
+    animation: blink-animation 1s steps(5, start) infinite;
+    -webkit-animation: blink-animation 1s steps(5, start) infinite;
+}
+
+@keyframes blink-animation {
+    to {
+        visibility: hidden;
+    }
+}
+
+@-webkit-keyframes blink-animation {
+    to {
+        visibility: hidden;
+    }
+}
+
+.blink2 {
+    animation: blink-animation 4s steps(5, start) infinite;
+    -webkit-animation: blink-animation 4s steps(5, start) infinite;
+}
+
+@keyframes blink-animation {
+    to {
+        visibility: hidden;
+    }
+}
+
+@-webkit-keyframes blink-animation {
+    to {
+        visibility: hidden;
+    }
+}
